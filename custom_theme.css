@@ -1,0 +1,141 @@
+/* @theme custom_theme */
+@import default;
+
+:root{
+  --base-font-size: 24pt;
+  --color-background: #9c93ff;
+  --color-gradient-start: #e6e6e6;
+  --color-gradient-end: var(--color-background);
+  --color-shadow: rgba(0, 0, 0, 0.5);
+  --color-h2: rgb(220 220 100) ;
+  --color-h2-shadow: rgba(100, 100, 100, 0.8);
+  --color-h3: white;
+  --color-h3-shadow: rgba(100, 100, 100, 0.8);
+}
+
+.mermaid{
+  width: fit-content;
+  height: fit-content;
+}
+
+.mindmap svg{
+  height: 280px;
+}
+
+.mermaid {
+  width: 70%;
+  height: 40%;
+  background-color: rgb(0 50 200 / 0.3);
+  border: none
+}
+
+.mermaid svg {
+  display: block;
+  min-width: 100%;
+  max-width: 100%;
+  max-height: 100%;
+  margin: 0 auto;
+  font-size: var(--base-font-size);
+}
+
+section{
+  display: flex;
+  background-color: var(--color-background);
+  flex-direction: column;
+  gap: 20px;
+  padding: 20px;
+  font-size: var(--base-font-size);
+  margin-top: 2px;
+  margin-bottom: 2px;
+  /* height: 1200px; */
+  /* width: 1600px; */
+}
+
+header{
+  width: 100%;
+  background: linear-gradient(to right, var(--color-gradient-start), var(--color-gradient-end));
+  top: 5px;
+  height: 20px;
+}
+
+footer{
+  width: 100%;
+  position: fixed;
+  padding: 0px;
+  background: linear-gradient(to right, var(--color-gradient-start), var(--color-gradient-end));
+  bottom: 5px;
+  height: 20px;
+}
+
+section.title{
+  background-color: var(--color-background);
+  color: #e6e6e6;
+  padding: 100px 30px;
+  font-size: var(--base-font-size);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 20px;
+}
+
+section.title footer{
+  position: relative;
+  background: linear-gradient(to right, var(--color-gradient-start), var(--color-gradient-end));
+  color: #6c53f4;
+  margin-top: auto;
+  padding: 5px;
+}
+
+section h2{
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+pre, p, ul, h2, h3, h4, table{
+  margin-block-start: 2px;
+  margin-block-end: 2px;
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+h2, h3, h4, h5, h6{
+  margin-top: -10px;
+  margin-bottom: -10px;
+}
+
+h2{
+  color: var(--color-h2);
+  text-shadow: 3px 3px 6px var(--color-h2-shadow);
+}
+
+h3{
+  color: var(--color-h3);
+  text-shadow: 3px 3px 6px var(--color-h3-shadow);
+}
+
+strong{
+  color: red;
+  background-color: #b0a0ff;
+}
+
+em{
+  color: white;
+  text-decoration: underline;
+}
+
+pre:has(code){
+  color: white;
+  background-color: #05050a;
+}
+
+p>code{
+  color: yellow;
+  background-color: gray;
+}
+
+
+th, td{
+  border: 1px solid white;
+}
+

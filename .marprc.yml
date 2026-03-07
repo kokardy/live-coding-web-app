@@ -1,0 +1,7 @@
+title: Live Coding Web App
+author: kokardy
+theme: ./custom_theme.css
+allowLocalFile: true
+paginate: true
+html: true
+# pdf: true

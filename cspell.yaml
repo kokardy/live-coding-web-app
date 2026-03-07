@@ -1,0 +1,18 @@
+words:
+  - initdb
+  - usecase
+  - psql
+  # tools
+  - waveterm
+  - marp
+  - codecompanion
+  # python lib
+  - uvicorn
+  - nvim
+  - fastapi
+  - pydantic
+  - psycopg
+  - pytest
+  - httpx
+  - sqlalchemy
+  - asyncio
