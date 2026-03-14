@@ -1,0 +1,53 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+GIT_ROOT="$(git rev-parse --show-toplevel)"
+MILESTONE_DIR="$GIT_ROOT/docs/milestone"
+
+build_all() {
+    for md in "$MILESTONE_DIR"/*.md; do
+        echo "Converting: $md"
+        marp "$md"
+    done
+    echo "Done."
+}
+
+usage() {
+    cat <<EOF
+Usage: $(basename "$0") [OPTION]
+
+Convert Marp markdown files in $MILESTONE_DIR to HTML.
+
+Options:
+  --watch   Build all slides, then watch for changes and rebuild on save
+  --help    Show this help message and exit
+
+Without options, builds all slides once and exits.
+EOF
+}
+
+case "${1:-}" in
+    --help)
+        usage
+        exit 0
+        ;;
+    --watch)
+        build_all
+        echo "Watching $MILESTONE_DIR for changes..."
+        inotifywait -m -e close_write --include '\.md$' "$MILESTONE_DIR" | while read -r dir event file; do
+            echo "Detected $event: $file"
+            # inotifywaitとパイプで繋いでいるため、marpがパイプのstdinを読もうとしてしまう。
+            # /dev/nullを渡すことでstdinを閉じ、ファイル変換モードで動作させる。
+            marp "$MILESTONE_DIR/$file" < /dev/null
+        done
+        ;;
+    "")
+        build_all
+        ;;
+    *)
+        echo "Unknown option: $1" >&2
+        usage >&2
+        exit 1
+        ;;
+esac
