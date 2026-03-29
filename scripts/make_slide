@@ -20,7 +20,7 @@ Usage: $(basename "$0") [OPTION]
 Convert Marp markdown files in $MILESTONE_DIR to HTML.
 
 Options:
-  --watch   Build all slides, then watch for changes and rebuild on save
+  --watch   Watch all slides for changes and rebuild on save (uses marp --watch)
   --help    Show this help message and exit
 
 Without options, builds all slides once and exits.
@@ -33,14 +33,8 @@ case "${1:-}" in
         exit 0
         ;;
     --watch)
-        build_all
         echo "Watching $MILESTONE_DIR for changes..."
-        inotifywait -m -e close_write --include '\.md$' "$MILESTONE_DIR" | while read -r dir event file; do
-            echo "Detected $event: $file"
-            # inotifywaitとパイプで繋いでいるため、marpがパイプのstdinを読もうとしてしまう。
-            # /dev/nullを渡すことでstdinを閉じ、ファイル変換モードで動作させる。
-            marp "$MILESTONE_DIR/$file" < /dev/null
-        done
+        marp --watch "$MILESTONE_DIR"/*.md
         ;;
     "")
         build_all
