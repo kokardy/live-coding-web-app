@@ -1,4 +1,4 @@
-from sqlalchemy import BIGINT, UUID, Column, ForeignKey, String, Table, Text, TIMESTAMP
+from sqlalchemy import BIGINT, UUID, Column, ForeignKey, String, Table, Text, TIMESTAMP, func
 from sqlalchemy.orm import relationship
 
 from .base import Base
@@ -19,7 +19,7 @@ class Tag(Base):
 class Question(Base):
     __tablename__ = "questions"
 
-    id = Column(UUID, primary_key=True, autoincrement=True)
+    id = Column(UUID, primary_key=True)
     title = Column(String(255), nullable=False)
 
     asker = Column(String(255), nullable=False)
@@ -40,7 +40,7 @@ class Question(Base):
         "Staff", foreign_keys=[input_staff_id], backref="input_questions"
     )
 
-    created_at = Column(TIMESTAMP, nullable=False, server_default="CURRENT_TIMESTAMP")
+    created_at = Column(TIMESTAMP, nullable=False, server_default=func.now())
 
 
     def __repr__(self) -> str:
