@@ -16,3 +16,6 @@ words:
   - httpx
   - sqlalchemy
   - asyncio
+
+  # external repository
+  - evilmartians
