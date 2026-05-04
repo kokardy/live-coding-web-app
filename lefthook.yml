@@ -1,0 +1,18 @@
+pre-commit:
+  commands:
+    python-linter:
+      root: backend
+      glob: "*.py"
+      run: uv run ruff check --fix {staged_files}
+      stage_fixed: true
+    python-formatter:
+      root: backend
+      glob: "*.py"
+      run: uv run ruff format {staged_files}
+      stage_fixed: true
+
+pre-push:
+  commands:
+    backend-test:
+      root: backend
+      run: uv run pytest -s -vv tests/

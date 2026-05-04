@@ -17,5 +17,8 @@ words:
   - sqlalchemy
   - asyncio
 
+  # sqlachemy
+  - sessionmaker
+
   # external repository
   - evilmartians
